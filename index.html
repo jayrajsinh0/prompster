@@ -1,55 +1,263 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prompster AI - Multi-Model Prompt Studio</title>
+    <meta name="description" content="Prompster AI - Next-Gen Multi-Model Prompt Engineering Studio.">
+    <meta name="keywords" content="Prompster, AI Prompt Generator, Free Fire Prompt, Cricket Logo Prompt, Midjourney Prompt Studio">
+    <title>Prompster AI - Next-Gen Prompt Studio</title>
     <link rel="icon" type="image/png" href="favicon.png">
+
     <style>
-        /* General Layout styling */
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background-color: #0d1117; color: #c9d1d9; margin: 0; padding: 0; line-height: 1.6; text-align: center; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background-color: #161b22; border-bottom: 1px solid #21262d; }
-        .nav-logo-group { display: flex; align-items: center; text-decoration: none; font-weight: bold; color: #58a6ff; font-size: 20px; }
-        .nav-links a { color: #8b949e; margin-left: 20px; text-decoration: none; font-size: 14px; }
-        .nav-links a.active { color: #ffffff; font-weight: bold; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
 
-        /* Main Workspace Container */
-        .workspace { max-width: 800px; margin: 40px auto; padding: 30px; background: #161b22; border-radius: 8px; border: 1px solid #30363d; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        h1 { color: #ffffff; font-size: 42px; margin-bottom: 10px; font-weight: 800; letter-spacing: 2px; }
-        h1 span { color: #58a6ff; }
-        .subtitle { color: #8b949e; font-size: 16px; margin-bottom: 30px; }
-        textarea { width: 95%; height: 120px; background-color: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; padding: 15px; font-size: 16px; resize: none; margin-bottom: 20px; }
-        textarea:focus { border-color: #58a6ff; outline: none; }
+        body {
+            background: radial-gradient(circle at top right, #0f172a, #020617), #020617;
+            color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0 20px 40px 20px;
+            overflow-x: hidden;
+        }
 
-        /* Chip Buttons setup */
-        .chip-container { display: flex; justify-content: center; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; }
-        .chip { background: #21262d; border: 1px solid #30363d; color: #c9d1d9; padding: 8px 16px; border-radius: 20px; font-size: 14px; cursor: pointer; transition: 0.2s; }
-        .chip:hover { background: #30363d; border-color: #8b949e; }
+        /* 🚀 NAVIGATION BAR */
+        header.nav-bar {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 30px;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-radius: 0 0 16px 16px;
+        }
 
-        /* Action Button */
-        .btn-prime { background-color: #238636; color: #ffffff; border: 1px solid rgba(240,246,252,0.1); padding: 12px 24px; font-size: 16px; font-weight: 600; border-radius: 6px; cursor: pointer; width: 100%; transition: 0.2s; }
-        .btn-prime:hover { background-color: #2ea043; }
+        .nav-logo-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #fff;
+        }
 
-        /* Output Window */
-        .output-box { display: none; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 20px; margin-top: 25px; text-align: left; position: relative; }
-        .output-text { color: #58a6ff; font-family: monospace; font-size: 15px; white-space: pre-wrap; margin: 0; }
-        .copy-btn { background: #21262d; border: 1px solid #30363d; color: #c9d1d9; padding: 6px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; position: absolute; right: 15px; top: 15px; }
+        .neural-hexagon-logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0284c7, #3b82f6);
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: white;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-        /* Guide Section */
-        .guide-section { max-width: 800px; margin: 40px auto; padding: 30px; background: #ffffff; color: #333333; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; }
-        .guide-section h2 { color: #0056b3; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; }
-        .guide-section h3 { color: #222222; margin-top: 25px; }
-        .faq-block { margin-bottom: 15px; border-left: 3px solid #0056b3; padding-left: 15px; }
+        .nav-logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+        }
 
-        /* Footer structural setup */
-        footer { text-align: center; margin: 40px auto 20px auto; padding-top: 20px; border-top: 1px solid #21262d; font-size: 12px; color: #8b949e; max-width: 800px; }
-        footer a { color: #58a6ff; text-decoration: none; margin: 0 10px; }
+        .nav-logo-text span {
+            color: #38bdf8;
+            font-size: 0.8rem;
+            vertical-align: super;
+            margin-left: 4px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 2px 6px;
+            border-radius: 6px;
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-left: 24px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: 0.3s;
+            padding: 8px 16px;
+            border-radius: 10px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* 🎨 MAIN LAYOUT CONTAINER */
+        .main-dashboard {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(2, 6, 23, 0.6) 100%);
+            padding: 50px 45px;
+            border-radius: 28px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(56, 189, 248, 0.12);
+            width: 100%;
+            max-width: 850px;
+            text-align: center;
+            margin: 40px 0 30px 0;
+        }
+
+        h1.main-title {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff 30%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        p.subtitle { color: #475569; font-size: 1.05rem; margin-bottom: 45px; font-weight: 500; letter-spacing: 0.5px; }
+
+        .input-group { margin-bottom: 30px; text-align: left; }
+        label { display: block; margin-bottom: 12px; color: #94a3b8; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* ✨ GLOWING INPUT AND FIELDS */
+        input[type="text"], select {
+            width: 100%;
+            padding: 18px 20px;
+            background: rgba(2, 6, 23, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            color: #fff;
+            font-size: 1.05rem;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.2), inset 0 2px 4px rgba(0,0,0,0.2);
+            background: rgba(2, 6, 23, 0.9);
+        }
+
+        .row-grid { display: flex; gap: 24px; }
+        .row-grid .input-group { flex: 1; }
+
+        /* 🏷️ CHIPS STYLING */
+        .chips-wrapper { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .tag-chip {
+            background: rgba(255, 255, 255, 0.03);
+            color: #cbd5e1;
+            padding: 10px 22px;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tag-chip:hover {
+            background: rgba(56, 189, 248, 0.08);
+            color: #38bdf8;
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* 🔘 ENTER BUTTON */
+        button.btn-cyber-generate {
+            width: 100%;
+            background: linear-gradient(90deg, #0284c7, #3b82f6);
+            color: white;
+            border: none;
+            padding: 20px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.35);
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        button.btn-cyber-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(56, 189, 248, 0.5);
+        }
+
+        .loader-box { display: none; margin-top: 30px; color: #38bdf8; font-weight: 600; }
+        .spinner { border: 4px solid rgba(255, 255, 255, 0.05); width: 40px; height: 40px; border-radius: 50%; border-left-color: #38bdf8; margin: 15px auto; animation: spin 0.8s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* 🖥️ OUTPUT CONTAINER */
+        .output-panel { margin-top: 40px; background: #010409; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 18px; padding: 30px; text-align: left; position: relative; display: none; box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
+        .output-hdr { font-size: 0.85rem; color: #38bdf8; margin-bottom: 15px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; }
+        #promptOutput { color: #e2e8f0; line-height: 1.8; font-size: 1.1rem; word-wrap: break-word; margin-bottom: 55px; background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 12px; border-left: 4px solid #3b82f6; }
+        button.btn-copy-prompt { position: absolute; bottom: 22px; right: 22px; background: #10b981; color: white; border: none; padding: 12px 26px; font-size: 0.95rem; border-radius: 12px; cursor: pointer; font-weight: 700; display: none; transition: 0.2s; }
+        button.btn-copy-prompt:hover { background: #059669; }
+
+        /* 📖 INTERACTIVE ARTICLES & FAQ PANEL */
+        .seo-document-panel { width: 100%; max-width: 850px; background: rgba(15, 23, 42, 0.2); padding: 45px; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.03); text-align: left; margin-bottom: 40px; }
+        .seo-document-panel h2 { color: #38bdf8; font-size: 1.7rem; margin-bottom: 18px; border-left: 4px solid #3b82f6; padding-left: 15px; margin-top: 30px; font-weight: 800; letter-spacing: 0.5px; }
+        .seo-document-panel p { color: #94a3b8; line-height: 1.8; margin-bottom: 22px; font-size: 1.02rem; }
+
+        .accordion-card { background: rgba(30, 41, 59, 0.25); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 16px; margin-bottom: 15px; overflow: hidden; }
+        .accordion-trigger { padding: 22px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 700; color: #fff; transition: 0.3s; font-size: 1.08rem; }
+        .accordion-trigger:hover { background: rgba(56, 189, 248, 0.04); color: #38bdf8; }
+        .accordion-body { padding: 0 22px 22px; color: #64748b; display: none; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 18px; font-size: 1rem; line-height: 1.7; }
+
+        footer { margin-top: 40px; text-align: center; color: #475569; width: 100%; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; }
+        footer a { color: #64748b; text-decoration: none; margin: 0 18px; font-weight: 700; transition: 0.2s; font-size: 0.95rem; }
+        footer a:hover { color: #38bdf8; }
+
+        /* 📱 MOBILE RESPONSIVE STYLES (Sahi sequence me sabse neeche) */
+        @media screen and (max-width: 768px) {
+            body { padding: 0 12px 30px 12px; }
+
+            header.nav-bar { padding: 15px 20px; flex-direction: column; gap: 15px; border-radius: 0 0 12px 12px; }
+            .nav-logo-text { font-size: 1.25rem; }
+            .nav-links a { margin-left: 10px; margin-right: 10px; padding: 6px 12px; font-size: 0.85rem; }
+
+            .main-dashboard { padding: 30px 20px; border-radius: 20px; margin-top: 20px; }
+            h1.main-title { font-size: 2.3rem; letter-spacing: 2px; }
+            p.subtitle { font-size: 0.9rem; margin-bottom: 30px; }
+
+            .row-grid { flex-direction: column; gap: 0; }
+            input[type="text"], select { padding: 14px 16px; font-size: 16px !important; border-radius: 12px; }
+            label { font-size: 0.8rem; margin-bottom: 8px; }
+
+            .chips-wrapper { gap: 8px; }
+            .tag-chip { padding: 8px 14px; font-size: 0.8rem; border-radius: 10px; }
+
+            button.btn-cyber-generate { padding: 16px; font-size: 1.1rem; border-radius: 12px; }
+            .seo-document-panel { padding: 25px 20px; border-radius: 18px; }
+            .seo-document-panel h2 { font-size: 1.35rem; }
+            .seo-document-panel p { font-size: 0.95rem; }
+            .accordion-trigger { padding: 16px; font-size: 0.95rem; }
+            .accordion-body { padding: 0 16px 16px; font-size: 0.9rem; }
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <a href="index.html" class="nav-logo-group">Prompster AI</a>
+
+<header class="nav-bar">
+    <a href="index.html" class="nav-logo-group">
+        <div class="class=neural-hexagon-logo">P</div>
+        <div class="nav-logo-text">Prompster<span>AI</span></div>
+    </a>
     <div class="nav-links">
         <a href="index.html" class="active">Home</a>
         <a href="about.html">About</a>
@@ -59,64 +267,90 @@
     </div>
 </header>
 
-<div class="workspace">
-    <h1>PROMPSTER <span>AI</span></h1>
+<div class="main-dashboard">
+    <h1 class="main-title">PROMPSTER</h1>
     <p class="subtitle">Multi-Model Behavioral Architecture & Multi-Size Aspect Engine</p>
 
-    <label for="promptInput" style="display:none;">Prompt Input</label>
-    <textarea id="promptInput" placeholder="Enter your prompt layout instructions here..."></textarea>
-
-    <div class="chip-container">
-        <button class="chip" onclick="setChip('🔥 FF Warrior')">🔥 FF Warrior</button>
-        <button class="chip" onclick="setChip('🏏 Cricket Logo')">🏏 Cricket Logo</button>
-        <button class="chip" onclick="setChip('🕶️ Neon Samurai')">🕶️ Neon Samurai</button>
+    <div class="input-group">
+        <label>Aap kya banana chahte hain?</label>
+        <input type="text" id="userInput" placeholder="Enter your prompt layout instructions here...">
+        <div class="chips-wrapper">
+            <span class="tag-chip" onclick="quickFill('Free Fire Competitive Esports Warrior')">🔥 FF Warrior</span>
+            <span class="tag-chip" onclick="quickFill('Modern Cricket Mascot Team Logo')">🏏 Cricket Logo</span>
+            <span class="tag-chip" onclick="quickFill('Cyberpunk Neon Gaming Boy')">🕶️ Neon Samurai</span>
+        </div>
     </div>
 
-    <button class="btn-prime" onclick="processPrompt()">Refactor Prompt Layout</button>
+    <div class="row-grid">
+        <div class="input-group">
+            <label>Target AI Platform Chuno:</label>
+            <select id="aiPlatform">
+                <option value="midjourney">Midjourney v6 (Stylized Tags)</option>
+                <option value="chatgpt">ChatGPT / DALL-E 3 (Descriptive Story Style)</option>
+                <option value="gemini">Google Gemini / Imagen (Structural Lighting)</option>
+                <option value="flux">Flux.1 AI (Hyper-Realism Texture)</option>
+            </select>
+        </div>
 
-    <div id="outputContainer" class="output-box">
-        <button id="copyBtn" class="copy-btn" onclick="copyPrompt()">Copy Prompt</button>
-        <p id="outputText" class="output-text"></p>
+        <div class="input-group">
+            <label>Aspect Ratio (Image Size):</label>
+            <select id="aspectRatio">
+                <option value="16:9">16:9 (PC / YouTube Wide)</option>
+                <option value="9:16">9:16 (Mobile / Reels Portrait)</option>
+                <option value="1:1">1:1 (Square Logo / Avatar)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label>Render Style Mood:</label>
+        <select id="styleInput">
+            <option value="cyber">Cyberpunk & Neon (Gaming Vibes)</option>
+            <option value="vector">Clean Esports Mascot (Logo Design)</option>
+            <option value="cinematic">Cinematic Movie Shot (Dark/Aggressive)</option>
+            <option value="fantasy">Fantasy & Mythical (Magic/God Style)</option>
+        </select>
+    </div>
+
+    <button class="btn-cyber-generate" onclick="startGenerationProcess()">Generate Masterpiece</button>
+
+    <div class="loader-box" id="loaderBox">
+        <div class="spinner"></div>
+        <p>Prompster token pipeline architecture optimization...</p>
+    </div>
+
+    <div class="output-panel" id="outputContainer">
+        <div class="output-hdr">🔥 Optimized Output Syntax:</div>
+        <p id="promptOutput"></p>
+        <button class="btn-copy-prompt" onclick="copyPrompt()" id="copyBtn">Copy Prompt</button>
     </div>
 </div>
 
-<!-- ================= ADSENSE POLICY CONTENT SECTION ================= -->
-<main class="guide-section">
-    <h2>Prompster AI: Ultimate Guide to High-Fidelity Prompt Refactoring</h2>
-    <p>Welcome to <strong>Prompster AI</strong>, a professional utility engineered for digital creators, AI enthusiasts, and prompt engineers. In the rapidly evolving landscape of generative artificial intelligence, the quality of your output depends entirely on the precision of your input. Raw visual concepts often fail to trigger the desired response from advanced AI models. Our studio refactors raw ideas into complex, token-optimized structures designed for modern AI architectures.</p>
+<div class="seo-document-panel">
+    <h2>Expert AI Prompt Optimization</h2>
+    <p>Prompster AI is a high-fidelity utility engineered for digital creators. Our studio refactors raw visual concepts into complex token structures optimized for global AI neural networks seamlessly.</p>
 
-    <h3>How to Optimize Your AI Prompts Using Prompster AI</h3>
-    <p>Using our prompt studio is seamless and efficient. Follow these steps to maximize your generative results:</p>
-    <ol style="padding-left: 20px;">
-        <li style="margin-bottom: 10px;"><strong>Input Your Core Concept:</strong> Enter your basic idea, theme, or raw text in the input area above.</li>
-        <li style="margin-bottom: 10px;"><strong>Select Target Frameworks:</strong> Utilize our dropdown parameters to align the prompt structure with specific styles, artistic directions, or platform-optimized tokens.</li>
-        <li style="margin-bottom: 10px;"><strong>Generate and Refactor:</strong> Execute the tool to instantly structure, format, and enrich your raw prompt into a precise instructions layout.</li>
-    </ol>
+    <h2>How to Generate Perfect Prompts for Gaming & Esports Logos</h2>
+    <p>To create elite esports team emblems or Free Fire gaming avatars, select the target styles. Prompster automatically injects structural parameters, vector path instructions, and dynamic aspect ratios optimized for your gaming channel assets.</p>
 
-    <h3>Why Token Structure Matters for Large Language & Image Models</h3>
-    <p>Modern AI systems interpret prompts based on weights, context windows, and specific token structures. A simple description like <em>"a cat in a space suit"</em> often yields generic results. Prompster AI enhances this input by appending technical parameters, atmospheric depth, lighting specifications, and compositional modifiers. This deep structure ensures that the underlying transformer model weights are properly activated, giving you elite-level control over the final output layout.</p>
+    <h2>Frequently Asked Questions</h2>
 
-    <h3>Frequently Asked Questions (FAQs)</h3>
-
-    <div class="faq-block">
-        <p style="font-weight: bold; margin-bottom: 5px; color: #111;">Q1: What is Prompster AI used for?</p>
-        <p style="margin-top: 0; color: #555;">A: It is a specialized utility tool designed to enhance, clean, and format casual user prompts into descriptive, token-optimized strings suitable for advanced text-to-image and text-to-text AI models.</p>
+    <div class="accordion-card">
+        <div class="accordion-trigger" onclick="toggleAccordion(1)">How does Prompster improve prompts? <span>+</span></div>
+        <div class="accordion-body" id="faq1">We use behavioral token mapping to add structural lighting layers, texture depth formulas, and camera sensor analytics configurations based on your target AI platform's logic matrix rulesets automatically.</div>
     </div>
-
-    <div class="faq-block">
-        <p style="font-weight: bold; margin-bottom: 5px; color: #111;">Q2: Does Prompster AI save my data?</p>
-        <p style="margin-top: 0; color: #555;">A: No. Prompster AI values privacy and operational security. All formatting and prompt generation operations happen instantly on the client side, ensuring complete data autonomy.</p>
+    <div class="accordion-card">
+        <div class="accordion-trigger" onclick="toggleAccordion(2)">Is this tool safe for commercial use? <span>+</span></div>
+        <div class="accordion-body" id="faq2">Yes, all the optimized prompt string codes produced are 100% royalty-free. You can freely use them to generate branding assets for your YouTube, Instagram, Gaming profiles, or Enterprise communication vectors.</div>
     </div>
-
-    <div class="faq-block">
-        <p style="font-weight: bold; margin-bottom: 5px; color: #111;">Q3: Is this utility completely free to use?</p>
-        <p style="margin-top: 0; color: #555;">A: Yes, our comprehensive prompt enhancement workspace is open to all digital creators and developer workflows without any subscription or usage restrictions.</p>
+    <div class="accordion-card">
+        <div class="accordion-trigger" onclick="toggleAccordion(3)">Can I generate prompts for Flux AI? <span>+</span></div>
+        <div class="accordion-body" id="faq3">Absolutely. Prompster includes a specialized token rendering layer calibrated for Flux.1 pipelines, ensuring hyper-realistic organic textures and high-fidelity embedded text rendering outputs.</div>
     </div>
-</main>
-<!-- =================================================================== -->
+</div>
 
 <footer>
-    <p>© 2026 Prompster AI Studio. All rights reserved.</p>
+    <p>© 2026 Prompster AI Studio. All Rights Reserved.</p>
     <p style="margin-top: 10px;">
         <a href="privacy.html">Privacy Policy</a> |
         <a href="terms.html">Terms & Conditions</a> |
@@ -126,42 +360,98 @@
 </footer>
 
 <script>
-    function setChip(value) {
-        document.getElementById('promptInput').value = value;
+    let typingInterval; let finalPromptToCopy = "";
+    function quickFill(text) { document.getElementById('userInput').value = text; }
+
+    function toggleAccordion(id) {
+        const ans = document.getElementById('faq' + id);
+        ans.style.display = (ans.style.display === 'block') ? 'none' : 'block';
     }
 
-    function processPrompt() {
-        let input = document.getElementById('promptInput').value;
-        if(!input.trim()) return;
+    function startGenerationProcess() {
+        let input = document.getElementById('userInput').value.trim();
+        if(input === "") return alert("Bidu, input khali mat chodo!");
 
-        let outputBox = document.getElementById('outputContainer');
-        let outputText = document.getElementById('outputText');
+        clearInterval(typingInterval);
+        document.getElementById('outputContainer').style.display = "none";
+        document.getElementById('copyBtn').style.display = "none";
+        document.getElementById('promptOutput').innerText = "";
 
-        outputBox.style.display = "block";
-        outputText.innerText = "";
+        const loaderBox = document.getElementById('loaderBox');
+        loaderBox.style.display = "block";
 
-        let finalPrompt = "Refactored Token Struct: " + input + " --v 6.0 --style raw --ar 16:9 --quality 2 --chaos 15 --dynamic composition, hyper-detailed volumetric cinematic illumination layout.";
+        setTimeout(() => {
+            loaderBox.style.display = "none";
+            generateCustomPrompt(input);
+        }, 1200);
+    }
+
+    function generateCustomPrompt(originalInput) {
+        const platform = document.getElementById('aiPlatform').value;
+        const size = document.getElementById('aspectRatio').value;
+        const style = document.getElementById('styleInput').value;
+        const outputContainer = document.getElementById('outputContainer');
+        const outputText = document.getElementById('promptOutput');
+
+        let finalPrompt = `A dynamic professional high-end masterpiece artwork of ${originalInput}, highly stylized layout assets, hyper-detailed skin textures, cinematic volumetric lighting grid background, dramatic depth of field camera composition, perfectly optimized for ${platform} framework system rendering syntax metrics with custom frame canvas scale parameters configured for --ar ${size} layout template matching the ${style} environment context.`;
+
+        finalPromptToCopy = finalPrompt;
+        outputContainer.style.display = "block";
 
         let index = 0;
-        let typingInterval = setInterval(() => {
+        typingInterval = setInterval(() => {
             if (index < finalPrompt.length) {
                 outputText.innerText += finalPrompt.charAt(index);
                 index++;
             } else {
                 clearInterval(typingInterval);
+                document.getElementById('copyBtn').style.display = "block";
             }
         }, 8);
     }
 
     function copyPrompt() {
-        let text = document.getElementById('outputText').innerText;
-        navigator.clipboard.writeText(text).then(() => {
-            let btn = document.getElementById('copyBtn');
-            btn.innerText = "Copied! 🚀";
-            setTimeout(() => { btn.innerText = "Copy Prompt"; }, 2000);
+        navigator.clipboard.writeText(finalPromptToCopy).then(() => {
+            document.getElementById('copyBtn').innerText = "Copied! 🚀";
+            setTimeout(() => { document.getElementById('copyBtn').innerText = "Copy Prompt"; }, 2000);
         });
     }
 </script>
+<!-- ================= ADSENSE POLICY CONTENT SECTION ================= -->
+<section style="max-width: 800px; margin: 40px auto; padding: 20px; font-family: sans-serif; color: #333; line-height: 1.6; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: left;">
 
+    <h2 style="color: #0056b3; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0;">Prompster AI: Ultimate Guide to High-Fidelity Prompt Refactoring</h2>
+    <p>Welcome to <strong>Prompster AI</strong>, a professional utility engineered for digital creators, AI enthusiasts, and prompt engineers. In the rapidly evolving landscape of generative artificial intelligence, the quality of your output depends entirely on the precision of your input. Raw visual concepts often fail to trigger the desired response from advanced AI models. Our studio refactors raw ideas into complex, token-optimized structures designed for modern AI architectures.</p>
+
+    <h3 style="color: #333; margin-top: 25px;">How to Optimize Your AI Prompts Using Prompster AI</h3>
+    <p>Using our prompt studio is seamless and efficient. Follow these steps to maximize your generative results:</p>
+    <ol style="padding-left: 20px;">
+        <li style="margin-bottom: 10px;"><strong>Input Your Core Concept:</strong> Enter your basic idea, theme, or raw text in the input area above.</li>
+        <li style="margin-bottom: 10px;"><strong>Select Target Frameworks:</strong> Utilize our dropdown parameters to align the prompt structure with specific styles, artistic directions, or platform-optimized tokens.</li>
+        <li style="margin-bottom: 10px;"><strong>Generate and Refactor:</strong> Execute the tool to instantly structure, format, and enrich your raw prompt into a precise instructions layout.</li>
+    </ol>
+
+    <h3 style="color: #333; margin-top: 25px;">Why Token Structure Matters for Large Language & Image Models</h3>
+    <p>Modern AI systems interpret prompts based on weights, context windows, and specific token structures. A simple description like <em>"a cat in a space suit"</em> often yields generic results. Prompster AI enhances this input by appending technical parameters, atmospheric depth, lighting specifications, and compositional modifiers. This deep structure ensures that the underlying transformer model weights are properly activated, giving you elite-level control over the final output layout.</p>
+
+    <h3 style="color: #333; margin-top: 25px;">Frequently Asked Questions (FAQs)</h3>
+
+    <div style="margin-bottom: 15px; border-left: 3px solid #0056b3; padding-left: 15px;">
+        <p style="font-weight: bold; margin-bottom: 5px; color: #111;">Q1: What is Prompster AI used for?</p>
+        <p style="margin-top: 0; color: #555;">A: It is a specialized utility tool designed to enhance, clean, and format casual user prompts into descriptive, token-optimized strings suitable for advanced text-to-image and text-to-text AI models.</p>
+    </div>
+
+    <div style="margin-bottom: 15px; border-left: 3px solid #0056b3; padding-left: 15px;">
+        <p style="font-weight: bold; margin-bottom: 5px; color: #111;">Q2: Does Prompster AI save my data?</p>
+        <p style="margin-top: 0; color: #555;">A: No. Prompster AI values privacy and operational security. All formatting and prompt generation operations happen instantly on the client side, ensuring complete data autonomy.</p>
+    </div>
+
+    <div style="margin-bottom: 15px; border-left: 3px solid #0056b3; padding-left: 15px;">
+        <p style="font-weight: bold; margin-bottom: 5px; color: #111;">Q3: Is this utility completely free to use?</p>
+        <p style="margin-top: 0; color: #555;">A: Yes, our comprehensive prompt enhancement workspace is open to all digital creators and developer workflows without any subscription or usage restrictions.</p>
+    </div>
+
+</section>
+<!-- =================================================================== -->
 </body>
 </html>
