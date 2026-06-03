@@ -1,29 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Prompster AI</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background-color: #0d1117; color: #c9d1d9; margin: 0; padding: 0; line-height: 1.6; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background-color: #161b22; border-bottom: 1px solid #21262d; }
-        .nav-logo-group { display: flex; align-items: center; text-decoration: none; font-weight: bold; color: #58a6ff; font-size: 20px; }
-        .nav-links a { color: #8b949e; margin-left: 20px; text-decoration: none; font-size: 14px; }
-        .nav-links a.active { color: #ffffff; font-weight: bold; }
-        .container { max-width: 800px; margin: 60px auto; padding: 40px; background: #161b22; border-radius: 8px; border: 1px solid #30363d; box-shadow: 0 4px 12px rgba(0,0,0,0.15); text-align: left; }
-        h1 { color: #58a6ff; font-size: 32px; border-bottom: 1px solid #21262d; padding-bottom: 10px; margin-top: 0; }
-        p { color: #8b949e; font-size: 16px; margin-bottom: 25px; }
-        .email-box { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 20px; text-align: center; margin: 30px 0; }
-        .email-box a { color: #58a6ff; font-size: 18px; font-weight: bold; text-decoration: none; }
-        footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #21262d; font-size: 12px; color: #8b949e; }
-        footer a { color: #58a6ff; text-decoration: none; margin: 0 10px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background: radial-gradient(circle at top right, #0f172a, #020617), #020617; color: #f8fafc; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 0 20px 40px 20px; overflow-x: hidden; }
+        header.nav-bar { width: 100%; max-width: 1000px; display: flex; justify-content: space-between; align-items: center; padding: 25px 30px; background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(56, 189, 248, 0.1); position: sticky; top: 0; z-index: 1000; border-radius: 0 0 16px 16px; }
+        .nav-logo-group { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; }
+        .neural-hexagon-logo { width: 40px; height: 40px; background: linear-gradient(135deg, #0284c7, #3b82f6); clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); box-shadow: 0 0 20px rgba(56, 189, 248, 0.5); display: flex; justify-content: center; align-items: center; font-weight: 900; font-size: 1.2rem; color: white; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .nav-logo-text { font-size: 1.5rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: #fff; }
+        .nav-logo-text span { color: #38bdf8; font-size: 0.8rem; vertical-align: super; margin-left: 4px; border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 6px; border-radius: 6px; background: rgba(56, 189, 248, 0.1); }
+        .nav-links { display: flex; flex-wrap: nowrap; }
+        .nav-links a { color: #94a3b8; text-decoration: none; margin-left: 24px; font-size: 0.95rem; font-weight: 600; transition: 0.3s; padding: 8px 16px; border-radius: 10px; white-space: nowrap; }
+        .nav-links a:hover, .nav-links a.active { color: #fff; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .main-container { background: linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(2, 6, 23, 0.6) 100%); padding: 50px 45px; border-radius: 28px; box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05); backdrop-filter: blur(24px); border: 1px solid rgba(56, 189, 248, 0.12); width: 100%; max-width: 850px; text-align: left; margin: 40px 0 30px 0; }
+        h1.page-title { font-size: 2.5rem; font-weight: 900; color: #38bdf8; margin-bottom: 25px; border-bottom: 1px solid rgba(56, 189, 248, 0.1); padding-bottom: 10px; }
+        p.content-text { color: #94a3b8; line-height: 1.8; margin-bottom: 25px; font-size: 1.05rem; }
+        .email-box { background: rgba(2, 6, 23, 0.7); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 16px; padding: 25px; text-align: center; margin: 30px 0; box-shadow: 0 0 20px rgba(56, 189, 248, 0.1); }
+        .email-box span { display: block; color: #94a3b8; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; }
+        .email-box a { color: #38bdf8; font-size: 1.3rem; font-weight: 800; text-decoration: none; letter-spacing: 0.5px; transition: 0.2s; }
+        .email-box a:hover { color: #fff; }
+        footer { margin-top: 40px; text-align: center; color: #475569; width: 100%; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; }
+        footer a { color: #64748b; text-decoration: none; margin: 0 18px; font-weight: 700; transition: 0.2s; font-size: 0.95rem; }
+        footer a:hover { color: #38bdf8; }
+        @media screen and (max-width: 768px) {
+            body { padding: 0 12px 30px 12px; }
+            header.nav-bar { padding: 15px 10px; flex-direction: column; gap: 12px; border-radius: 0 0 12px 12px; }
+            .nav-logo-text { font-size: 1.25rem; }
+            .nav-links { justify-content: center; width: 100%; }
+            .nav-links a { margin-left: 4px; margin-right: 4px; padding: 6px 8px; font-size: 0.8rem; }
+            .main-container { padding: 30px 20px; border-radius: 20px; margin-top: 20px; }
+            h1.page-title { font-size: 1.8rem; }
+            p.content-text { font-size: 0.95rem; }
+            .email-box a { font-size: 1.05rem; }
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <a href="index.html" class="nav-logo-group">Prompster AI</a>
+<header class="nav-bar">
+    <a href="index.html" class="nav-logo-group">
+        <div class="neural-hexagon-logo">P</div>
+        <div class="nav-logo-text">Prompster<span>AI</span></div>
+    </a>
     <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -33,26 +55,27 @@
     </div>
 </header>
 
-<div class="container">
-    <h1>Contact Us</h1>
-    <p>Have questions, feedback, or need support with Prompster AI Studio? Our support team is dedicated to assisting digital creators, prompt engineers, and developers with workflow optimization queries.</p>
+<div class="main-container">
+    <h1 class="page-title">Contact Us</h1>
+    <p class="content-text">Have questions, feedback, or need support with Prompster AI Studio? Our support team is dedicated to assisting digital creators, prompt engineers, and developers with workflow optimization queries.</p>
 
-    <p>For official inquiries, layout behavior reports, or technical support, please reach out to us directly via our verified helpdesk email address listed below. We aim to respond to all inquiries within 24 to 48 business hours.</p>
+    <p class="content-text">For official inquiries, layout behavior reports, or technical support, please reach out to us directly via our verified helpdesk email address listed below. We aim to respond to all inquiries within 24 to 48 business hours.</p>
 
     <div class="email-box">
-        <span style="display:block; color:#8b949e; font-size:14px; margin-bottom:5px;">Official Support Email</span>
+        <span>Official Support Email</span>
         <a href="mailto:supportprompster.ai@gmail.com">supportprompster.ai@gmail.com</a>
     </div>
+</div>
 
-    <footer>
-        <p>&copy; 2026 Prompster AI. All rights reserved.</p>
-        <a href="index.html">Home</a> |
+<footer>
+    <p>© 2026 Prompster AI Studio. All Rights Reserved.</p>
+    <p style="margin-top: 10px;">
         <a href="privacy.html">Privacy Policy</a> |
         <a href="terms.html">Terms & Conditions</a> |
         <a href="about.html">About Us</a> |
         <a href="contact.html">Contact Us</a>
-    </footer>
-</div>
+    </p>
+</footer>
 
 </body>
 </html>
